@@ -1,0 +1,36 @@
+
+.navbar {
+    background-color: #2d3748;
+    color: white;
+  }
+
+  .navbar a {
+    color: white; 
+    padding: 0.5rem 1rem;
+    border-radius: 9999px; 
+    font-weight: 500; 
+    transition: background-color 0.3s;
+  }
+  
+  .navbar a:hover {
+    background-color: #63b3ed; 
+  }
+  
+  .navbar .active {
+    background-color: #2b6cb0; 
+  }
+  
+ 
+  @media (max-width: 768px) {
+    .navbar .menu {
+      display: block;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .navbar .menu {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+  
