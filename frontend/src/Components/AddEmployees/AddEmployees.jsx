@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2'; 
 import './AddEmployees.css'; 
 
 function AddEmployees() {
@@ -10,7 +11,6 @@ function AddEmployees() {
     address: '',
   });
 
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserData({
@@ -19,20 +19,30 @@ function AddEmployees() {
     });
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      
       const response = await axios.post('http://localhost:5000/employees', userData);
+
       
-      
+      Swal.fire({
+        title: 'Success!',
+        text: 'User added successfully!',
+        icon: 'success',
+        confirmButtonText: 'Okay'
+      });
+
       console.log('User added:', response.data);
-      alert('User added successfully!');
     } catch (error) {
-  
+     
+      Swal.fire({
+        title: 'Error!',
+        text: 'Error adding user!',
+        icon: 'error',
+        confirmButtonText: 'Try Again'
+      });
+
       console.error('Error adding user:', error);
-      alert('Error adding user!');
     }
   };
 

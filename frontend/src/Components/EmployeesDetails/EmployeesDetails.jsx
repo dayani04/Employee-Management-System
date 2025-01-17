@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2'; 
 import './EmployeesDetails.css';
 
 function EmployeesDetails() {
@@ -12,7 +13,6 @@ function EmployeesDetails() {
     address: ''
   });
 
- 
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
@@ -25,13 +25,28 @@ function EmployeesDetails() {
     fetchEmployees();
   }, []);
 
- 
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/employees/${id}`);
-      setEmployees(employees.filter(employee => employee._id !== id)); 
+      setEmployees(employees.filter(employee => employee._id !== id));
+
+      
+      Swal.fire({
+        title: 'Deleted!',
+        text: 'Employee has been deleted.',
+        icon: 'success',
+        confirmButtonText: 'Okay'
+      });
     } catch (error) {
       console.error('Error deleting employee:', error);
+
+      
+      Swal.fire({
+        title: 'Error!',
+        text: 'Failed to delete employee!',
+        icon: 'error',
+        confirmButtonText: 'Try Again'
+      });
     }
   };
 
@@ -45,7 +60,6 @@ function EmployeesDetails() {
     });
   };
 
- 
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
@@ -53,10 +67,28 @@ function EmployeesDetails() {
         `http://localhost:5000/employees/${editEmployee._id}`,
         updateData
       );
+
+      
       setEmployees(employees.map(emp => (emp._id === editEmployee._id ? response.data.employees : emp)));
-      setEditEmployee(null); 
+      setEditEmployee(null);
+
+      
+      Swal.fire({
+        title: 'Updated!',
+        text: 'Employee details have been updated.',
+        icon: 'success',
+        confirmButtonText: 'Okay'
+      });
     } catch (error) {
       console.error('Error updating employee:', error);
+
+      
+      Swal.fire({
+        title: 'Error!',
+        text: 'Failed to update employee!',
+        icon: 'error',
+        confirmButtonText: 'Try Again'
+      });
     }
   };
 
