@@ -7,7 +7,7 @@ const HomePage = () => {
     <section>
        
       <div className="home-container">
-        <h1 className="home-header h1">Welcome to Our Pet Care Management System</h1>
+        <h1 className="home-header h1">Welcome to Employee Management System</h1>
         <img src={pic1} alt="Slide 1" className="image-slide" />
 
         <div className="cards-container">
